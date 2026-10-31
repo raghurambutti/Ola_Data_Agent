@@ -1,0 +1,36 @@
+[project]
+name = "data-agent"
+version = "1.0.0"
+description = "Ola AI Data Agent - a Claude-powered multi-agent system (router, SQL Analyst, ETL Analyst) built with LangGraph and PostgreSQL"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "anthropic>=2.3.0",
+    "langchain>=1.4.7",
+    "langchain-anthropic>=1.7.7",
+    "langgraph>=1.2.18",
+    "pandas>=3.0.5",
+    "psycopg2-binary>=2.9.13",
+    "pyarrow>=25.0.1",
+    "pydantic>=2.14.1",
+    "python-dotenv>=1.2.4",
+    "requests>=2.34.2",
+    "streamlit>=1.50",
+]
+
+[project.scripts]
+data-agent = "data_agent.main:main"
+data-agent-load-db = "data_agent.feed_db:main"
+
+[build-system]
+requires = ["uv_build>=0.13.6,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+filterwarnings = ["ignore::DeprecationWarning:langsmith.*"]
